@@ -1,0 +1,38 @@
+// 1. FRAME, 2. HTML item, 3. value, 4. expected value, 5. action
+// Setting Value (Value != null, Expected value = null)
+// Assert Value (Value = null, Expected value != nulls)
+// Select Item (default is click) (Value = null, Expected value = null)
+// Coordinate (x, y) (Value != null, Expected value != null) 
+
+[LOCATORS]
+BaseUrl == sample/frame.html
+InputText == //*[@id="FirstName"]
+SearchButton == button|Search
+Button == button[class='btn'][onclick='myFunction()']|Click Me!
+
+[testcase1]
+LOAD, BaseUrl, null, null
+WAIT, null, 1000 , null
+menu, InputText, null , Micky , Assert value
+WAIT, null, 1000 , null
+menu, InputText, Kitty , null
+menu, SearchButton, null, null
+ALERT, dismiss, null, null
+WAIT, null, 1000 , null
+menu, SearchButton, OK, OK, After search
+WAIT, null, 5000 , null
+
+[testcase2]
+LOAD, BaseUrl, null, null
+WAIT, null, 1000 , null
+contents, Button, null, null
+ALERT, dismiss, null, null
+WAIT, null, 1000 , null
+contents, Button, OK, OK, After pressed button
+WAIT, null, 5000 , null
+
+[COMMANDS]
+testcase1
+testcase2
+
+[END]

@@ -1,0 +1,42 @@
+// 1. FRAME, 2. HTML item, 3. value, 4. expected value, 5. action
+// Setting Value (Value != null, Expected value = null)
+// Assert Value (Value = null, Expected value != nulls)
+// Select Item (default is click) (Value = null, Expected value = null)
+// Coordinate (x, y) (Value != null, Expected value != null) 
+
+[LOCATORS]
+baseUrl == sample/canvas.html
+canvas == //*[@id="myCanvas"]
+
+[displayConsole]
+WAIT, null, 1000, null
+KEY, null, VK_F12->CONTROL;VK_2, null
+WAIT, null, 1000, null
+
+[displayConsole(CHROME)]
+WAIT, null, 1000, null
+KEY, null, CONTROL;SHIFT;VK_J, null
+WAIT, null, 1000, null
+
+[displayConsole(FIREFOX)]
+WAIT, null, 1000, null
+KEY, null, CONTROL;SHIFT;VK_K, null
+WAIT, null, 1000, null
+
+[testcase1]
+LOAD, baseUrl, null, null
+wait, null, 1000 , null
+null, canvas, 150, 75, MOVE_TO_ELEMENT
+wait, null, 1000 , null
+null, canvas, 150, 75
+KEY, null, RETURN, null
+ALERT, dismiss|dismiss, null, null
+
+//displayConsole
+null, canvas, OK, OK, Capture screen
+wait, null, 5000 , null
+
+[COMMANDS]
+testcase1
+
+[END]

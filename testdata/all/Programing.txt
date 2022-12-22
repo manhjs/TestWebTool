@@ -1,0 +1,35 @@
+// 1. FRAME, 2. HTML item, 3. value, 4. expected value, 5. action
+// Setting Value (Value != null, Expected value = null)
+// Assert Value (Value = null, Expected value != nulls)
+// Select Item (default is click) (Value = null, Expected value = null)
+// Coordinate (x, y) (Value != null, Expected value != null) 
+
+[IMPORT]
+// import header file
+testdata/common/Setup.txt
+
+[LOCATORS]
+// local variables
+GetDataButton == //*[@id="get_data"]
+StudentListBox == //*[@id="user_list"]
+
+[testcase1]
+// import test data
+ImportTestData_block
+
+// login
+login_block
+
+// click to button
+null, GetDataButton, null, null
+// assert result
+null, StudentListBox, null, Tacos | Tomato Soup | Grilled Cheese, check 3 students
+
+// restore data
+RestoreData_block
+
+// the same main method in C or Java
+[COMMANDS]
+testcase1
+
+[END]

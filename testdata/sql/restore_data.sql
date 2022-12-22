@@ -1,0 +1,1 @@
+﻿DELETE ALL FROM students;

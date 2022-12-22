@@ -1,0 +1,26 @@
+// 1. FRAME, 2. HTML item, 3. value, 4. expected value, 5. action
+// Setting Value (Value != null, Expected value = null)
+// Assert Value (Value = null, Expected value != nulls)
+// Select Item (default is click) (Value = null, Expected value = null)
+// Coordinate (x, y) (Value != null, Expected value != null) 
+
+[LOCATORS]
+baseUrl == sample/button.html
+Button == button[class='btn'][onclick='myFunction()']|Click Me!
+Image == /html/body/div/img
+
+[testcase1]
+LOAD, baseUrl, null, null
+WAIT, null, 1000 , null
+null, Image, 30, 40
+WAIT, null, 3000 , null
+null, Button, null, null, MOVE_TO_ELEMENT
+null, Button, null, Click Me!, Assert button name
+null, Button, null, null
+ALERT, dismiss, null, null
+WAIT, null, 5000 , null
+
+[COMMANDS]
+testcase1
+
+[END]

@@ -1,0 +1,41 @@
+// 1. FRAME, 2. HTML item, 3. value, 4. expected value, 5. action
+// Setting Value (Value != null, Expected value = null)
+// Assert Value (Value = null, Expected value != nulls)
+// Select Item (default is click) (Value = null, Expected value = null)
+// Coordinate (x, y) (Value != null, Expected value != null) 
+
+[LOCATORS]
+HomePge == localhost:8080/Index.html
+LoginID == //*[@id="email"]
+LoginPass == //*[@id="pass"]
+ImportData == mysql -u username -p password database_name < sql/import_data.sql
+
+[login_block]
+LOAD, HomePge, null, null
+null, LoginID, username, null
+null, LoginPass, abc, null
+
+[ImportTestData_block]
+RUNTIME, ImportData, null, null
+wait, null, 30000, null
+
+[RestoreData_block]
+RUNTIME, ImportData, null, null
+wait, null, 30000, null
+
+[displayConsole（IE)]
+wait, null, 1000, null
+KEY, null, VK_F12->CONTROL;VK_2, null
+wait, null, 1000, null
+
+[displayConsole(CHROME)]
+wait, null, 1000, null
+KEY, null, VK_CONTROL;VK_SHIFT;VK_J, null
+wait, null, 1000, null
+
+[displayConsole]
+wait, null, 1000, null
+KEY, null, VK_F12, null
+wait, null, 1000, null
+
+[END]

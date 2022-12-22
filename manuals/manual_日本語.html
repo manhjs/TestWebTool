@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	font-family: Arial;
+}
+
+/* Style the tab */
+.tab {
+	overflow: hidden;
+	border: none;
+	background-color: #f1f1f1;
+	border: 1px solid #4CAF50;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+	background-color: inherit;
+	float: left;
+	border: 1px solid #4CAF50;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	font-size: 17px;
+	width: 170px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+	background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+	background-color: #4CAF50;
+}
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #4CAF50;
+	border-top: none;
+}
+/* comment */
+.comment {
+	color: #4CAF50;
+}
+
+/* keyword */
+.keyword {
+	background-color: #ffff99;
+}
+</style>
+</head>
+<body>
+	<div class="tab">
+		<button id="BtIntroduction" class="tablinks" onclick="openTab('Introduction')">概要</button>
+		<button id="BtGuide" class="tablinks" onclick="openTab('Guide')">使い方</button>
+		<button id="BtSetting" class="tablinks" onclick="openTab('Setting')">設定</button>
+		<button id="BtFileFormat" class="tablinks" onclick="openTab('FileFormat')">新テキスト形式</button>
+		<button id="BtLocators" class="tablinks" onclick="openTab('Locators')">ロケーター</button>
+		<button id="BtCommands" class="tablinks" onclick="openTab('Commands')">コマンド</button>
+		<button id="BtBlocks" class="tablinks" onclick="openTab('Blocks')">メソッド</button>
+		<button id="BtSamples" class="tablinks" onclick="openTab('Samples')">サンプル</button>
+	</div>
+	<div id="Introduction" class="tabcontent" style="text-align: left">
+		<h2>本ツールは、ウェブサイト検証ツールです。以下の特徴があります。</h2>
+		<p>
+		&bull;&nbsp;ブラウザに依存しない。IE,Chrome,Firefox,..などがすべて実行されます。 <br /> 
+		&bull;&nbsp;プログラム言語に依存しない。Java, C#, PHP,..などのサイトがすべて実行されます。 <br /> 
+ 		&bull;&nbsp;Console版は、OSに依存しない。Windows,Linux,MacOS,..に問わず実行されます。 <br /> 
+ 		&bull;&nbsp;サイトの構築フレームに問わずに、自動的に検索されます。 <br />
+ 		&bull;&nbsp;言語に依存しない。日本語、英語、中国語,...を問わずにテストケースが作成できます
+		</p>
+	</div>
+	<div id="Guide" class="tabcontent" style="text-align: left">
+		<p>
+		<h2>本ツール言語を選択してください。デフォルトは、英語ですが。現在英語と日本語しか対応していない。</h2>
+		<h2>Step 1</h2>
+		</p>
+
+		<img src="img/manual_jp1.png">
+		<p>
+		<h2>Step 2</h2>
+		起動する時デフォルト「マニュアルを開く」ですが。この辺でマニュアルをご覧ください。
+		</p>
+		<img src="img/manual_jp2.png">
+		<p>
+		<h2>Step 3</h2>
+		設定を編集する機能は、テキスト内容で、ブラウザを使用有無に設定して（コメントアウト）。コメント記号は、行の先頭に「//」や「#」をつけてください。
+		</h2>
+		また各ブラウザ事につけて、テストケースファイルやフォルダーを設定してください。
+		</h2>
+		絶対パスも相対パスもかまわない。フォルダーの場合は、直下にすべてファイルを実行されます。
+		</p>
+		<img src="img/manual_jp3.png">
+		<p>
+		<h2>Step 4</h2>
+		「すぐ試験を試す」機能は、簡単に左側に直接テキストを入力して、や貼り付けて、「実行する」ボタンを押下すると試験を行う。
+		</h2>
+		これは、タブレートや簡単テストケースをすぐ検証できる機能です。
+		</p>
+		<img src="img/manual_jp4.png">
+		<p>
+		<h2>Step 5</h2>
+		「実行する」機能は、設定する内容を通して、試験を行います。試験が終わったら、試験結果フォルダーを表示する。ここで結果をご確認ください。
+		</p>
+
+		<img src="img/manual_jp5.png">
+		<p>
+		<h2>Step 6</h2>
+		この機能は、試験結果フォルダー設定や参照する
+		</p>
+		<img src="img/manual_jp6.png">
+	</div>
+	<div id="Setting" class="tabcontent" style="text-align: left">
+		<h2>1. パラメータ設定</h2>
+		<p> &bull;&nbsp;&nbsp;言語、エンコーディング、実行スピードなどを設定できます。<br/>
+		&nbsp;エラーが見つけたら、強制終了(StopErrorFile == YES)又は(StopErrorFile == NO)最後まで、進めて、いくつNGやOKケースをまとめる事ができます。</p>
+		<img src="img/setting3.png">
+		<h2>2. ブラウザ追加&bull;&nbsp;削除</h2>
+		<p> &bull;&nbsp;&nbsp;ステップ①：インストールフォルダ直下に「drivers」フォルダがあります。<br/>
+		&nbsp;Seleniumサイトからダウンロードしたドライバをそちらに配置してしてください。</p>
+		<img src="img/setting1.png">
+		<p> &bull;&nbsp;&nbsp;ステップ②：インストールフォルダ直下に「TestSetting.txt」設定ファイルがあります。<br/>
+		&nbsp;以下EDGEブラウザのようなブラウザ該当する情報を記載してください。<br/>
+		&nbsp;&nbsp;&bull;&nbsp;ブラウザリストにブラウザ名(ClassName)を追加してください。<br/>
+		&nbsp;&nbsp;&bull;&nbsp;ブラウザの付属するテストケースフィルも追加してください。<br/><br/>
+		<img src="img/setting2.png">
+		<p>
+		&nbsp;※ブラウザを削除する手順は、逆ですが、普段そのブラウザが使わない時は、ブラウザ一覧にコメントアウトしてください。
+		</p>
+		<h2>3. 制限(IEとEDGEブラウザのみ)</h2>
+		<p>&bull;&nbsp;&nbsp;現在、Windows 10 バージョン1803までIE又はEDGEがサポートされていいます。<br/>
+		&nbsp;&nbsp;しかし、バージョン1809以降は、ドライバーアップデート待ち状態です。</p>
+		<h2>4. セキュリティ設定（IEブラウザのみ）</h2>
+		<p>&bull;&nbsp;&nbsp;IEブラウザのみに対して、以下の設定が必要です。</p>
+		<p><img src="img/ie_jp1.png"></p>
+		<p><img src="img/ie_jp2.png"></p>
+		<p><img src="img/ie_jp3.png"></p>
+		<p><img src="img/ie_jp4.png"></p>
+		<p><img src="img/ie_en5.png"></p>
+	</div>
+	<div id="FileFormat" class="tabcontent" style="text-align: left">
+		<p>
+			1.現在の有名なテキストファイル形式以下の例です<br />&bull;&nbsp;xml形式：「&lt; &gt;」タグ内で記載する<br />&bull;&nbsp;
+			json形式：「：{}」
+		</p>
+		<p>
+			2.しかし、上記の物は人間として、読む事や書く事が難しいので<br />今回、「[ ]
+			==」を使って、独自なテキスト形式を定義致します。
+		</p>
+		<p>
+			&nbsp;例）<br />&bull;&nbsp;// （キー、値）仕組み<br />&nbsp;<span class="keyword">
+				[KEY]</span><br />&nbsp; &nbsp; subKey1 == abc<br />&nbsp; &nbsp; subKey2
+			== xyz
+		</p>
+		<p>
+			&bull;&nbsp;// リスト仕組み<br /> <span class="keyword">&nbsp; [KEY]</span><br />&nbsp;
+			&nbsp; abcd<br />&nbsp; &nbsp; zyxt<br />&nbsp; &nbsp; 123
+		</p>
+		<p>
+			<span class="keyword">[END]</span>
+		</p>
+		<h2>3. 以下は、テストケースファイル</h2>
+		<p>
+			例）<br /> <span class="comment">// 1. FRAME, 2. HTML item, 3.
+				value, 4. expected value, 5. action</span><br /> <span class="comment">//
+				Value setting (Value != null, Expected value = null)</span><br /> <span
+				class="comment">// Value authentication (Value = null,
+				Expected value ! null)</span><br /> <span class="comment">// Value
+				selection (Value = null, Expected value = null)</span>
+		</p>
+		<p>
+			<span class="keyword">[LOCATORS]</span><br />baseUrl ==
+			manual/canvas.html<br />button == /html/body/div/button<br />imgage
+			== /html/body/div/img
+		</p>
+		<p>
+			<span class="keyword">[testcase1]</span><br /> <span
+				class="comment">// load home page</span><br />LOAD, baseUrl, null,
+			null<br /> <span class="comment">//waite a second</span><br />wait,
+			null, 1000 , null<br /> <span class="comment">//click mouse
+				to position (x = 30, y = 40) on image</span><br />null, imgage, 30, 40<br />
+			<span class="comment">//waite a second</span><br />wait, null, 1000
+			, null<br /> <span class="comment">//click button</span><br />null,
+			button, null, null<br /> <span class="comment">// dismiss
+				alert</span><br />alert, dismiss, null, null<br /> <span class="comment">//
+				wait to finished</span><br />wait, null, 10000 , null
+		</p>
+		<p>
+			<span class="keyword">[COMMANDS]</span><br />testcase1
+		</p>
+		<p>
+			<span class="keyword">[END]</span>
+		</p>
+	</div>
+	<div id="Locators" class="tabcontent" style="text-align: left">
+		<p>
+		<h2>1. Chromeブラウザなど上で、Xpathを取得する</h2>
+		&bull;&nbsp;ページにを右をクリック &rarr; Inspect <br /> &bull;&nbsp;
+		HTML項目（ボタン、テキストボックスなど）にマウスを右にクリック &rarr; Inspect &rarr; Copy
+		&rarr;Copy Xpath
+		</p>
+		<img src="img/Xpath1.png" alt="xpath">
+		<p>【結果】ButtonXpath == /html/body/div/button</p>
+		<p>
+		<h2>
+			2. Chromeブラウザなど上で、CssSelectorを取得する<br /> &bull;&nbsp;ページにを右をクリック &rarr;
+			Inspect
+		</h2>
+		&bull;&nbsp;HTML項目（ボタン、テキストボックスなど）にマウスを右にクリック &rarr; Inspect &rarr; Edit as HTML
+		</p>
+		<img src="img/css1.png" alt="css">
+		<p>
+			&nbsp; &nbsp;【結果】ButtonCssSelector ==
+			button[class='btn'][onclick='myFunction()']<span
+				style="color: #000000;">|</span>Click Me!
+		</p>
+		<p>&bull;&nbsp;&nbsp;概要形式：CssSelector | 表示文字列|Index</p>
+		<p>&bull;&nbsp;画面上で、複数項目があれば、検索順番で指定でいる</p>
+		<p>&nbsp; &nbsp; 例）</p>
+		<p>
+			&nbsp; &nbsp; ButtonCssSelector_0 ==
+			button[class='btn'][onclick='myFunction()']|Click Me!|<span
+				style="color: #ff0000;">0</span>
+		</p>
+		<p>
+			&nbsp; &nbsp; ButtonCssSelector_1 ==
+			button[class='btn'][onclick='myFunction()']|Click Me!|<span
+				style="color: #ff0000;">1</span>
+		</p>
+		<p>&bull;&nbsp;画面上で、複数階層であれば、親 &gt; 子で指定できる</p>
+		<p>
+			&nbsp; &nbsp; ButtonCssSelector == div[class='container'] <span
+				style="color: #ff0000;">&gt;</span>
+			button[class='btn'][onclick='myFunction()']|Click Me!
+		</p>
+		<p>
+		<h2>3. canvas場合は、座標で確定する（画面解像度に影響があると思います）</h2>
+		&bull;&nbsp;ページにを右をクリック &rarr; Inspect
+		</p>
+		<p>&bull;&nbsp;JavaScriptコードより、デバッグで、(x,y)座標を取得できる</p>
+		<img src="img/canvas1.png" alt="css">
+
+	</div>
+	<div id="Commands" class="tabcontent" style="text-align: left">
+		<h2>1. 記載ルール</h2>
+		<table
+			style="width: 456.65pt; border-collapse: collapse; border: none;"
+			width="609">
+			<tbody>
+				<tr style="height: 12.0pt;">
+					<td
+						style="width: 72.55pt; border: solid windowtext 1.0pt; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="97">
+						<p
+							style="margin-bottom: .0001pt; text-align: center; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">1</span>
+						</p>
+					</td>
+					<td
+						style="width: 91.75pt; border: solid windowtext 1.0pt; border-left: none; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="122">
+						<p
+							style="margin-bottom: .0001pt; text-align: center; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">2</span>
+						</p>
+					</td>
+					<td
+						style="width: 82.15pt; border: solid windowtext 1.0pt; border-left: none; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="110">
+						<p
+							style="margin-bottom: .0001pt; text-align: center; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">3</span>
+						</p>
+					</td>
+					<td
+						style="width: 94.95pt; border: solid windowtext 1.0pt; border-left: none; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="127">
+						<p
+							style="margin-bottom: .0001pt; text-align: center; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">4</span>
+						</p>
+					</td>
+					<td
+						style="width: 115.25pt; border: solid windowtext 1.0pt; border-left: none; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="154">
+						<p
+							style="margin-bottom: .0001pt; text-align: center; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">5</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height: 12.0pt;">
+					<td
+						style="width: 72.55pt; border: solid windowtext 1.0pt; border-top: none; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="97">
+						<p style="margin-bottom: .0001pt; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">FRAME</span>
+						</p>
+					</td>
+					<td
+						style="width: 91.75pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="122">
+						<p style="margin-bottom: .0001pt; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">HTML</span><span
+								style="font-size: 12.0pt; font-family: 'Malgun Gothic', sans-serif;">項目</span>
+						</p>
+					</td>
+					<td
+						style="width: 82.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="110">
+						<p style="margin-bottom: .0001pt; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Malgun Gothic', sans-serif;">値</span><span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">/x</span><span
+								style="font-size: 12.0pt; font-family: 'Malgun Gothic', sans-serif;">座標</span>
+						</p>
+					</td>
+					<td
+						style="width: 94.95pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="127">
+						<p style="margin-bottom: .0001pt; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Malgun Gothic', sans-serif;">期待値</span><span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">/y</span><span
+								style="font-size: 12.0pt; font-family: 'Malgun Gothic', sans-serif;">座標</span>
+						</p>
+					</td>
+					<td
+						style="width: 115.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="154">
+						<p style="margin-bottom: .0001pt; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Malgun Gothic', sans-serif;">アクション</span>
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>
+			※コマ「,」で、コマンドパラメータを区切るので、コマが含むパラメータは、ダブルクォーテーションうをつけてください。<br />※「null」は空きですが、スペースと区別する。何もない場合は、スペース一個になる。大文字と小文字がかまわない。<br />※デフォルトアクション（クリック）又は、値設定、値認証場合は、「5.アクション」が省略できる。<br />
+			<br />例）<br /> <span class="comment">//HTML項目をクリックすると</span><br />frame,
+			ElementXPath, null, null, CLICK <br /> <span class="comment">//アクションは、デフォルトがクリックので省略すると</span><br />frame,
+			ElementXPath, null, null
+		</p>
+		<p>
+		<h2>2. コマンド定義</h2>
+		[LOCATORS] <br /> ElementXPath == //*[@id="item004"] <br />
+		ElementCssSelector == div[id$='_free_tableopen'][class='tableOpen']| <br />
+		ImportData == cmd.exe /c cls &amp; start cmd.exe /c " mysql -u
+		username -p password database_name &lt; sql/import_data.sql " <br />
+		HomePage== http://localhost:8080/index.html
+		</p>
+		<p>
+			<span class="comment">// Selenium アクション定義</span><br />CLICK,
+			MOVE_TO_ELEMENT, DOUBLE_CLICK, CONTEXT_CLICK, MOVE_BY_OFFSET,
+			CLICK_AND_HOLD, RELEASE
+		</p>
+		<p>
+			<span class="comment">// MOUSE アクション定義</span><br />MOUSE
+			(MOUSE_MOVE, MOUSE_CLICK, MOUSE_RIGHT_CLICK, MOUSE_DOUBLE_CLICK)
+		</p>
+		<p>
+			<span class="comment">// KEY 値定義</span><br />KEY
+			(VirtualKeyCode)
+		</p>
+		<p>
+			例）RETURN, CONTROL, TAB, VK_A, VK_B,&hellip;<br /> <span
+				style="color: #0000ff;">https://docs.microsoft.com/en-us/windows/desktop/inputdev/virtual-key-codes</span>
+		</p>
+		<p>
+			<span class="comment">// 項目が存在する/しない事を認証する</span><br />ASSERT_NOT_NULL<br />ASSERT_NULL
+		</p>
+		<p>
+			<span class="comment">// 項目が表示する/表示しない事を認証する</span><br />ELEMENT_NOT_VISIBLE<br />ELEMENT_VISIBLE
+		</p>
+		<h2>3.通常コマンド</h2>
+		<p>
+			<span class="comment">// HTML項目をクリックする（トップページ又は、フレークなしサイト）</span> <br />&bull;&nbsp;null,
+			ElementXPath, null, null <br /> <span class="comment">//
+				項目の間中にマウスを移動する</span> <br />&bull;&nbsp;null, ElementCssSelector, null, null,
+			MOVE_TO_ELEMENT <br /> <span class="comment">//
+				フレーク中に項目をクリックする</span> <br />&bull;&nbsp;frame, ElementXPath, null, null <br /> <span
+				class="comment">// フレーク中に項目をダブルクリックする</span> <br />&bull;&nbsp;frame,
+			ElementCssSelector, null, null, DOUBLE_CLICK <br /> <span
+				class="comment">// フレーク中に項目の座標(30, 40)をクリックする</span> <br />&bull;&nbsp;frame,
+			ElementXPath, 30, 40, CLICK <br /> <span class="comment">//
+				現在Selenium操作画面をハードコピー</span> <br />&bull;&nbsp;frame, ElementCssSelector, OK, OK <br />
+			<span class="comment">// 確認メッセージを出力する</span> <br />&bull;&nbsp;frame,
+			ElementCssSelector, OK, OK, メッセージ <br /> <span class="comment">//
+				リレーション選択項目を売上データに選択する</span> <br />&bull;&nbsp;frame, リレーション選択, 売上データ, null <br /> <span
+				class="comment">// CSS 属性設定</span> <br />&bull;&nbsp;null, Slide,
+			"'style','left: 0%'", null, SET_ATTRIBUTE<br /> <span
+				class="comment">// リレーション選択している項目を売上データに認証して、且つ画面ハードコピー</span> <br />&bull;&nbsp;frame,
+			リレーション選択, null, 売上データ <br /> <span class="comment">//
+				項目が存在する事を認証する</span> <br />&bull;&nbsp;frame, ElementXPath, null, null,
+			ASSERT_NOT_NULL <br /> <span class="comment">//
+				項目が存在しない事を認証する</span> <br />&bull;&nbsp;frame, ElementXPath, null, null, ASSERT_NULL
+			<br /> <span class="comment">// 項目が表示する事を認証する</span> <br />&bull;&nbsp;frame,
+			ElementXPath, null, null, ELEMENT_NOT_VISIBLE <br /> <span
+				class="comment">// 項目が表示しない事を認証する</span> <br />&bull;&nbsp;frame,
+			ElementXPath, null, null, ELEMENT_VISIBLE <br />3. ALERT<br /> <span
+				class="comment">// アラートを閉じる</span> <br />&bull;&nbsp;alert, dismiss, null,
+			null <br /> <span class="comment">// アラートをOKにする</span> <br />&bull;&nbsp;alert,
+			accept, null, null <br /> <span class="comment">//
+				アラートの表示文字が「xyz」に比較する</span> <br />&bull;&nbsp;alert, assert, null, xyz <br /> <span
+				class="comment">// 複数アラート処理</span> <br />&bull;&nbsp;alert, accept|dismiss,
+			null , null 又はalert, accept|dismiss, null|null , null <br />&bull;&nbsp;alert,
+			accept|assert, null , null | ABC <br />&bull;&nbsp;alert, accept|KEY, null
+			|ALT; VK_S-&gt; ALT; VK_N , null
+		</p>
+		<p>
+		<h2>4. MOUSE</h2>
+		<span class="comment">// 画面の座標(x,y)へ移動する</span> <br /> &bull;&nbsp;MOUSE, null,
+		x, y, MOUSE_MOVE <br /> <span class="comment">//
+			マウスを現在の位置をクリックする</span> <br /> &bull;&nbsp;MOUSE, null, null, null, CLICK <br />
+		&bull;&nbsp;MOUSE, null, null, null, DOUBLE_CLICK <br /> &bull;&nbsp;MOUSE, null, null,
+		null, RIGHT_CLICK
+		</p>
+		<h2>5. KEY</h2>
+		<p>
+			<span class="comment">// 一つキー押下</span> <br />&bull;&nbsp;KEY, null, RETURN,
+			null <br /> <span class="comment">// 複数キー押下 (ALT + S)</span> <br />&bull;&nbsp;KEY,
+			null, ALT; VK_S, null <br /> <span class="comment">//
+				複数キー連続押下 (ALT + S) 次(ALT + N)</span> <br />&bull;&nbsp;KEY, null, ALT; VK_S-&gt; ALT;
+			VK_N, null&gt;
+		</p>
+		<h2>6.RUMTIME</h2>
+		<span class="comment">// SQLを実行する</span> <br /> &bull;&nbsp;RUNTIME, ImportData,
+		null, null
+		</p>
+		<p>
+		<h2>7. LOAD</h2>
+		&amp; RELOAD <br /> <span class="comment">// ポータルサイトへ」移動する</span> <br />
+		&bull;&nbsp;LOAD, HomePage, null, null <br /> <span class="comment">//
+			新しいタブ（タブ１）を追加する</span> <br /> &bull;&nbsp;KEY, null, CONTROL;VK_T, null <br />
+		&bull;&nbsp;RELOAD, HomePage, 1, null <br /> <span class="comment">//
+			タブ０）へ戻って、画面更新しない</span> <br /> &bull;&nbsp;RELOAD, null, 0, null <br /> <span
+			class="comment">//又は</span> <br /> &bull;&nbsp;RELOAD, , 0, null <br /> <span
+			class="comment">// タブ０）へ戻って、画面更新する</span> <br /> &bull;&nbsp;RELOAD, BaseUrl,
+		0, null
+		</p>
+		<p>
+		<h2>8. WAIT</h2>
+		<span class="comment">// 処理が1秒を待ちする</span> <br /> &bull;&nbsp;wait, null, 1000,
+		null
+		</p>
+		<p>
+		<h2>9. NONE</h2>
+		<p>
+			<span class="comment">// このコマンドは、直前のコマンドの最後に実行する。例）同時に操作したい場合、</span><br />
+			<span class="comment">//canvas上にマウスを移動して、ポップアップが表示（コマンド１）</span><br />
+			<span class="comment">//
+				そのポップアップをクリックする（コマンド２）は、NONEから始まる（フレームが同じから記載不要でNONEに記載 ）</span><br />&bull;&nbsp;NONE,
+			ElementXPath, null, null
+		</p>
+	</div>
+
+	<div id="Blocks" class="tabcontent" style="text-align: left">
+		<p>
+		<h2>以下のサンプルを見ながら説明しています。</h2>
+		&bull;&nbsp;testdata/common/Setup.txt <br /> &bull;&nbsp;testdata/sql/import_data.sql <br />
+		&bull;&nbsp;testdata/sql/restore_data.sql <br /> &bull;&nbsp;testdata/all/programing.txt
+		</p>
+		<p>
+			---------------------------------Setup.txt-----------------------------------<br />
+			<span class="comment">// 1. FRAME, 2. HTML item, 3. value, 4.
+				expected value, 5. action</span><br /> <span class="comment">//
+				Setting Value (Value != null, Expected value = null)</span><br /> <span
+				class="comment">// Assert Value (Value = null, Expected value
+				!= nulls)</span><br /> <span class="comment">// Select Item
+				(default is click) (Value = null, Expected value = null)</span><br /> <span
+				class="comment">// Coordinate (x, y) (Value != null, Expected
+				value != null)</span>
+		</p>
+		<p>
+			<span class="keyword">[LOCATORS]</span><br />HomePge ==
+			localhost:8080/Index.html<br />LoginID == //*[@id="email"]<br />LoginPass
+			== //*[@id="pass"]<br />ImportData == mysql -u username -p password
+			database_name &lt; sql/import_data.sql
+		</p>
+		<p>
+			<span class="keyword">[login_block]</span><br />LOAD, HomePge, null,
+			null<br />null, LoginID, username, null<br />null, LoginPass, abc,
+			null
+		</p>
+		<p>
+			<span class="keyword">[ImportTestData_block]</span><br />RUNTIME,
+			ImportData, null, null<br />wait, null, 30000, null
+		</p>
+		<p>
+			<span class="keyword">[RestoreData_block]</span><br />RUNTIME,
+			ImportData, null, null<br />wait, null, 30000, null
+		</p>
+		<p>
+			<span class="keyword">[displayConsole（IE)]</span><br />wait, null,
+			1000, null<br />KEY, nnull, VK_F12-&gt;CONTROL;VK_2, null<br />wait,
+			null, 1000, null
+		</p>
+		<p>
+			<span class="keyword">[displayConsole(CHROME)]</span><br />wait,
+			null, 1000, null<br />KEY, null, VK_CONTROL;VK_SHIFT;VK_J, null<br />wait,
+			null, 1000, null
+		</p>
+		<p>
+			<span class="keyword">[displayConsole]</span><br />wait, null, 1000,
+			null<br />KEY, nnull, VK_F12, null<br />wait, null, 1000, null
+		</p>
+		<p>
+			<span class="keyword">[END]</span>
+		</p>
+		<p>---------------------------------import_data.sql-----------------------------------</p>
+		<p>
+			CREATE TABLE students IF NOT EXSITS (<br />student_id INT NOT NULL,<br />student_name
+			VARCHAR(30) NOT NULL,<br />PRIMARY KEY (student_id),<br />UNIQUE
+			(student_name)<br />);
+		</p>
+		<p>
+			INSERT INTO students <br />(student_id, student_name) <br />VALUES
+			<br />(1,"Tacos"),<br />(2,"Tomato Soup"),<br />(3,"Grilled
+			Cheese");
+		</p>
+		<p>---------------------------------restore_data.sql-----------------------------------</p>
+		<p>DELETE ALL FROM students;</p>
+		<p>---------------------------------programing.txt-----------------------------------</p>
+		<p>
+			<span class="comment">// 1. FRAME, 2. HTML item, 3. value, 4.
+				expected value, 5. action</span><br /> <span class="comment">//
+				Setting Value (Value != null, Expected value = null)</span><br /> <span
+				class="comment">// Assert Value (Value = null, Expected value
+				!= nulls)</span><br /> <span class="comment">// Select Item
+				(default is click) (Value = null, Expected value = null)</span><br /> <span
+				class="comment">// Coordinate (x, y) (Value != null, Expected
+				value != null)</span>
+		</p>
+		<p>
+			<span class="keyword">[IMPORT]</span><br /> <span class="comment">//
+				import header file</span><br />testdata/common/Setup.txt
+		</p>
+		<p>
+			<span class="keyword">[LOCATORS]</span><br /> <span class="comment">//
+				local variables</span><br />GetDataButton == //*[@id="get_data"]<br />StudentListBox
+			== //*[@id="user_list"]
+		</p>
+		<p>
+			<span class="keyword">[testcase1]</span><br /> <span class="comment">//
+				import test data</span><br />ImportTestData_block
+		</p>
+		<p>
+			<span class="comment">// login</span><br />login_block
+		</p>
+		<p>
+			<span class="comment">// click to button</span><br />null,
+			GetDataButton, null, null<br /> <span class="comment">//
+				assert result</span><br />null, StudentListBox, null, Tacos | Tomato Soup
+			| Grilled Cheese, check 3 students
+		</p>
+		<p>
+			<span class="comment">// restore data</span><br />RestoreData_block
+		</p>
+		<p>
+			<span class="comment">// the same main method in C or Java</span><br />
+			<span class="keyword">[COMMANDS]</span><br />testcase1
+		</p>
+		<p>
+			<span class="keyword">[END]</span>
+		</p>
+		<p>---------------------------------programing.txt-----------------------------------</p>
+		<p>
+		<h2>1. 変数</h2>
+		&bull;&nbsp;Locators(Xpath又はCssSelector)が変数の役割で扱います。 <br />
+		&bull;&nbsp;Setup.txtファイルの中に共有なLocators（のHomePge、LoginIdなど）がグローバルと似ている。 <br />
+		&bull;&nbsp;programing.txtファイルの中に「GetDataButton
+		、StudentListBox」は、ロカール変数と似ている。もちろん名前が重なる場合は、ロカール変数が優先する
+		</p>
+		<p>
+		<h2>2.メソッド</h2>
+		&bull;&nbsp;毎回繰り返す操作組を「」で定義する操作メソッドイメージです。一か所で定義して、たくさんのところで、呼び出す事ができる。これは、すごく便利で、テスターは、工数が節約できる。
+		<br />&nbsp; &nbsp; 例）
+		Setup.txtの[login_block]や[ImportTestData_block]など、呼び出す時は、簡単にコマンド
+		：login_block <br />
+		&bull;&nbsp;操作メソッド拡張機能：各ブラウザの動作で、異なる操作場合があります。例）上記で、コンソールローグ表示する時は、 <br />&nbsp; &nbsp; IE
+		：F12 &rarr; （SHIFT + 2） ： displayConsole（IE) <br />&nbsp; &nbsp; Chrome : CONTROL
+		+ SHIFT + J ： displayConsole(CHROME) <br />&nbsp; &nbsp;
+		それで、個別の処理メソッドを定義する。又はIE,Chrome以外は、デフォルト displayConsole定義する <br />&nbsp; &nbsp;
+		呼び出す側に、個別メソッドを問わずに、displayConsoleをそのまま呼び出す。 <br />
+		※個別メソッドは、()括弧中で設定ファイルに定義したブラウザ名を入れてください。
+		</p>
+		<p>
+		<h2>3.クラスIMPORT</h2>
+		&bull;&nbsp;上記で、programing.txtファイルがSetup.txtファイルを呼び出して、すべて、変数やメソッドが使えます。クラス継承と似っている。
+		<br /> &bull;&nbsp;メソッド名が重なる場合は、ロカールメソッドが優先する(overide)
+		</p>
+	</div>
+
+	<div id="Samples" class="tabcontent" style="text-align: left">
+
+		<h2>簡単なサンプルテストケースは、testdataフォルダー直下に用意する</h2>
+		<p>
+		<h2>1. 試験プロジェクト</h2>
+		このサンプルは、試験用データ、テストケースを一式にまとめる。CやJavaプロジェクトと似っている。目的としては、各画面、機能によってわけるかもしれません。<br />このサンプルは、参考する物です。データベースや画面にに依頼するので実際環境のあわせて、実行してください。<br /><br />
+		<span class="comment">// ヘッダーファイル</span><br />&bull;&nbsp;testdata/common/Setup.txt
+		<br /> <span class="comment">// データベース操作</span><br />&bull;&nbsp;testdata/sql/import_data.sql
+		<br />&bull;&nbsp;testdata/sql/restore_data.sql <br /> <span class="comment">//
+			本テストケースファイル</span><br />&bull;&nbsp;testdata/all/programing.txt
+		</p>
+
+		<p>
+		<h2>2.以下のロカールサンプルが実行できる。</h2>
+		&bull;&nbsp;Guide.txt<br />
+		&bull;&nbsp;Button.txt<br />
+		&bull;&nbsp;Canvas.txt<br />
+		&bull;&nbsp;Frame.txt
+		</p>
+		<p>
+		<h2>3.facebookサイトにログインサンプルです。</h2>
+		&bull;&nbsp;LoginFacebook.txt
+		</p>
+	</div>
+
+	<script>
+		function openTab(tabName) {
+			if (tabName == "Introduction") {
+				document.getElementById("Introduction").style.display = "block";
+				document.getElementById("BtIntroduction").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Introduction").style.display = "none";
+				document.getElementById("BtIntroduction").style.backgroundColor = "#f1f1f1";
+			}
+
+			if (tabName == "Guide") {
+				document.getElementById("Guide").style.display = "block";
+				document.getElementById("BtGuide").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Guide").style.display = "none";
+				document.getElementById("BtGuide").style.backgroundColor = "#f1f1f1";
+			}
+			
+			if (tabName == "Setting") {
+				document.getElementById("Setting").style.display = "block";
+				document.getElementById("BtSetting").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Setting").style.display = "none";
+				document.getElementById("BtSetting").style.backgroundColor = "#f1f1f1";
+			}
+
+			if (tabName == "FileFormat") {
+				document.getElementById("FileFormat").style.display = "block";
+				document.getElementById("BtFileFormat").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("FileFormat").style.display = "none";
+				document.getElementById("BtFileFormat").style.backgroundColor = "#f1f1f1";
+			}
+
+			if (tabName == "Locators") {
+				document.getElementById("Locators").style.display = "block";
+				document.getElementById("BtLocators").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Locators").style.display = "none";
+				document.getElementById("BtLocators").style.backgroundColor = "#f1f1f1";
+			}
+
+			if (tabName == "Commands") {
+				document.getElementById("Commands").style.display = "block";
+				document.getElementById("BtCommands").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Commands").style.display = "none";
+				document.getElementById("BtCommands").style.backgroundColor = "#f1f1f1";
+			}
+
+			if (tabName == "Blocks") {
+				document.getElementById("Blocks").style.display = "block";
+				document.getElementById("BtBlocks").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Blocks").style.display = "none";
+				document.getElementById("BtBlocks").style.backgroundColor = "#f1f1f1";
+			}
+
+			if (tabName == "Samples") {
+				document.getElementById("Samples").style.display = "block";
+				document.getElementById("BtSamples").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Samples").style.display = "none";
+				document.getElementById("BtSamples").style.backgroundColor = "#f1f1f1";
+			}
+
+		}
+
+		// Get the default tab
+		document.getElementById("BtIntroduction").click();
+	</script>
+
+</body>
+</html>

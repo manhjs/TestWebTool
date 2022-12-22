@@ -1,0 +1,73 @@
+// 1. FRAME, 2. HTML item, 3. value, 4. expected value, 5. action
+// Setting Value (Value != null, Expected value = null)
+// Assert Value (Value = null, Expected value != nulls)
+// Select Item (default is click) (Value = null, Expected value = null)
+// Coordinate (x, y) (Value != null, Expected value != null) 
+
+[LOCATORS]
+BaseUrl == manual/manual_English.html
+Introduction == //*[@id="BtIntroduction"]
+Guide == //*[@id="BtGuide"]
+Setting == //*[@id="BtSetting"]
+FileFormat == //*[@id="BtFileFormat"]
+Locators == //*[@id="BtLocators"]
+Commands == //*[@id="BtCommands"]
+Blocks == //*[@id="BtBlocks"]
+Samples == //*[@id="BtSamples"]
+
+[Guide]
+// init tab
+LOAD, BaseUrl, null, null
+WAIT, null, 1000 , null
+null, Introduction, null, null, MOVE_TO_ELEMENT
+null, Introduction, null, null
+null, Introduction, OK, OK
+
+// Guide tab
+WAIT, null, 1000 , null
+null, Guide, null, null, MOVE_TO_ELEMENT
+null, Guide, null, null
+null, Guide, null, How to use
+
+// Setting tab
+WAIT, null, 1000 , null
+null, Setting, null, null, MOVE_TO_ELEMENT
+null, Setting, null, null
+null, Setting, null, Setting
+
+// Text Format tab
+WAIT, null, 1000 , null
+null, FileFormat, null, null, MOVE_TO_ELEMENT
+null, FileFormat, null, null
+null, FileFormat, null, Text Format
+
+// Locators tab
+WAIT, null, 1000 , null
+null, Locators, null, null, MOVE_TO_ELEMENT
+null, Locators, null, null
+null, Locators, null, Locators
+
+// Commands tab
+WAIT, null, 1000 , null
+null, Commands, null, null, MOVE_TO_ELEMENT
+null, Commands, null, null
+null, Commands, null, Commands
+
+// Methods tab
+WAIT, null, 1000 , null
+null, Blocks, null, null, MOVE_TO_ELEMENT
+null, Blocks, null, null
+null, Blocks, null, Methods
+
+// Samples tab
+WAIT, null, 1000 , null
+null, Samples, null, null, MOVE_TO_ELEMENT
+null, Samples, null, null
+null, Samples, null, Samples
+
+WAIT, null, 5000 , null
+
+[COMMANDS]
+Guide
+
+[END]

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	font-family: Arial;
+}
+
+/* Style the tab */
+.tab {
+	overflow: hidden;
+	border: none;
+	background-color: #f1f1f1;
+	border: 1px solid #4CAF50;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+	background-color: inherit;
+	float: left;
+	border: 1px solid #4CAF50;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	font-size: 17px;
+	width: 150px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+	background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+	background-color: #4CAF50;
+}
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #4CAF50;
+	border-top: none;
+}
+/* comment */
+.comment {
+	color: #4CAF50;
+}
+
+/* keyword */
+.keyword {
+	background-color: #ffff99;
+}
+</style>
+</head>
+<body>
+	<div class="tab">
+ 		<button id="BtIntroduction" class="tablinks" onclick="openTab('Introduction')">Introdution</button>
+		<button id="BtGuide" class="tablinks" onclick="openTab('Guide')">How to use</button>
+		<button id="BtSetting" class="tablinks" onclick="openTab('Setting')">Setting</button>
+		<button id="BtFileFormat" class="tablinks" onclick="openTab('FileFormat')">Text Format</button>
+		<button id="BtLocators" class="tablinks" onclick="openTab('Locators')">Locators</button>
+		<button id="BtCommands" class="tablinks" onclick="openTab('Commands')">Commands</button>
+		<button id="BtBlocks" class="tablinks" onclick="openTab('Blocks')">Methods</button>
+		<button id="BtSamples" class="tablinks" onclick="openTab('Samples')">Samples</button>
+	</div>
+	<div id="Introduction" class="tabcontent" style="text-align: left">
+		<h2>This tool is a website automation test tool. It has the following features.</h2>
+		<p>&nbsp; 
+			&bull;&nbsp;It does not depend on the Setting. All IE, Chrome, Firefox, .. etc. will be executed.<br />&nbsp; 
+			&bull;&nbsp;It does not depend on programming languages. All websites written in Java, C #, PHP, ...etc. will be executed.<br />&nbsp;
+			&bull;&nbsp;The Console version does not depend on the OS. It runs on Windows, Linux, MacOS, ..<br />&nbsp;
+			&bull;&nbsp;It will be searched automatically regardless of the site construction frames.<br />&nbsp; 
+			&bull;&nbsp;It does not depend on the languages. You can create test cases in English, Japanese, Chinese, ...
+		</p>
+	</div>
+	<div id="Guide" class="tabcontent" style="text-align: left">
+		<h2>Step 1</h2>
+		<p>Please select language. The default is English. Currently only English and Japanese are supported.</p>
+		<img src="img/manual_en1.png">
+		<h2>Step 2</h2>
+		<p>The default is open in "Read Manual" when launching. Please see the manual here.</p>
+		<img src="img/manual_en2.png">
+		<h2>Step 3</h2>
+ 		<p>Enable or disable fuctions in text setting file by comment out or not. Use "//" or "#" marks at the beginning of each line for comment. You must choose which browser to execute test and set test case files and folders for each browser. It does not matter whether it is an absolute path or a relative path. In the case of folders, all files below will be executed.</p>
+		<img src="img/manual_en3.png">
+		<h2>Step 4</h2>
+		<p>The "Quick test" function performs a test simply by directly entering text on the left side, pasting, and pressing the "execute" button. This function that allows you to quickly run test in table devices or simple test cases in only one file.</p>
+		<img src="img/manual_en4.png">
+		<h2>Step 5</h2>
+		<p>The "execute" function performs the test through the setting contents. When the exam is over, it will opened the exam results folder. Please check the results over there.</p>
+		<img src="img/manual_en5.png">
+		<h2>Step 6</h2>
+		<p>This function will set or show test results folder.</p>
+		<img src="img/manual_en6.png">
+	</div>
+	<div id="Setting" class="tabcontent" style="text-align: left">
+		<h2>1. Parameters settings</h2>
+		<p> &bull;&nbsp;You can set the language, encoding, execution speed, etc.<br/>
+		&nbsp;If an error is found, you can forced to stop (StopErrorFile == YES) or not (StopErrorFile == NO) to summary total of  NG or OK cases until the end.</p>
+		<img src="img/setting3.png">
+		<h2>2. Add or Delete Browsers</h2>
+		<p> &bull;&nbsp;Step 1: There is a "drivers" folder under the installation folder.<br/>
+		&nbsp;Please place the driver downloaded from the Selenium site there.</p>
+		<img src="img/setting1.png">
+		<p> &bull;&nbsp;Step 2: There is a setting file "TestSetting.txt" under the installation folder.<br/>
+		&nbsp;Please describe the browser corresponding information like EDGE browser below.<br/>
+		&nbsp;&nbsp;.Add a browser name (ClassName) to the browser list.<br/>
+		&nbsp;&nbsp;.Please add the test case file corresponding to the browser.<br/><br/>
+		<img src="img/setting2.png">
+		<p>
+		&nbsp;&bull;The procedure to delete the browser is the reverse, but you'd like to comment out in the browser list when the browser is not used.
+		</p>
+		<h2>3. Limitations (IE and EDGE Browsers Only)</h2>
+		<p>&bull;&nbsp;At this time, IE or EDGE is supported up to Windows 10 version 1803.<br/>
+		&nbsp;&nbsp;So that version 1809 or later is waiting for driver update.</p>
+		<h2>4. Security settings (IE browser only)</h2>
+		<p>&bull;&nbsp;The following settings are required for the IE browser only.</p>
+		<p><img src="img/ie_en1.png"></p>
+		<p><img src="img/ie_en2.png"></p>
+		<p><img src="img/ie_en3.png"></p>
+		<p><img src="img/ie_en4.png"></p>
+		<p><img src="img/ie_en5.png"></p>
+	</div>
+	<div id="FileFormat" class="tabcontent" style="text-align: left">
+		<h2>1. The current famous text file format is the following example</h2>
+		<p>&nbsp;&bull;&nbsp;xml format is described in the (&lt; &gt;) tags<br/> &nbsp;&bull;&nbsp;json format is described by (:{}) tags</p>
+		<h2>2. However these above things are difficult to read and write as human beings</h2>
+		<p>&nbsp;&bull;In this Tool, it is used ([] ==) to define own text format.</p>
+		<h2>3. Example</h2>
+ 		<p>&nbsp;&bull;&nbsp;// (key, value) pairs<br />&nbsp;<span class="keyword">[KEY]</span><br />&nbsp; &nbsp; subKey1 == abc<br />&nbsp; &nbsp; subKey2 == xyz</p>
+		<p>&nbsp;&bull;&nbsp;// List <br /> <span class="keyword">&nbsp; [KEY]</span><br />&nbsp;&nbsp;abcd<br />&nbsp;&nbsp;zyxt<br />&nbsp;&nbsp;123</p>
+		<p><span class="keyword">[END]</span></p>
+		<h2>4. The following is a test case file details</h2>
+		<p><span class="comment">// 1. FRAME, 2. HTML item, 3.value, 4. expected value, 5. action</span><br /> 
+			<span class="comment">// Value setting (Value != null, Expected value = null)</span><br />
+			<span class="comment">// Value authentication (Value = null, Expected value ! null)</span><br />
+			<span class="comment">// Value selection (Value = null, Expected value = null)</span>
+		</p>
+		<p>
+			<span class="keyword">[LOCATORS]</span><br />baseUrl ==
+			manual/canvas.html<br />button == /html/body/div/button<br />imgage
+			== /html/body/div/img
+		</p>
+		<p>
+			<span class="keyword">[testcase1]</span><br /> <span
+				class="comment">// load home page</span><br />LOAD, baseUrl, null,
+			null<br /> <span class="comment">//waite a second</span><br />wait,
+			null, 1000 , null<br /> <span class="comment">//click mouse
+				to position (x = 30, y = 40) on image</span><br />null, imgage, 30, 40<br />
+			<span class="comment">//waite a second</span><br />wait, null, 1000
+			, null<br /> <span class="comment">//click button</span><br />null,
+			button, null, null<br /> <span class="comment">// dismiss
+				alert</span><br />alert, dismiss, null, null<br /> <span class="comment">//
+				wait to finished</span><br />wait, null, 10000 , null
+		</p>
+		<p>
+			<span class="keyword">[COMMANDS]</span><br />testcase1
+		</p>
+		<p>
+			<span class="keyword">[END]</span>
+		</p>
+	</div>
+	<div id="Locators" class="tabcontent" style="text-align: left">
+		<h2>1. Get Xpath on Chrome Browser.</h2>
+		<p>
+			&bull;&nbsp;Right click on the page &rarr; Inspect <br /> 
+ 			&bull;&nbsp;Click mouse right on HTML item (button, text box,..) &rarr; Inspect &rarr; Copy&rarr;Copy Xpath
+		</p>
+		<img src="img/Xpath1.png" alt="xpath">
+		<p>(result) ButtonXpath == /html/body/div/button</p>
+		<h2>2. Get CssSelector on Chrome Browser</h2> 
+		<p>
+			&bull;&nbsp;Right click on the page &rarr;Inspect<br /> 
+			&bull;&nbsp;Click mouse right on HTML item (button, textbox,...) &rarr; Inspect &rarr; Edit as HTML
+		</p>
+		<img src="img/css1.png" alt="css">
+		<p>&nbsp; &nbsp;(result) ButtonCssSelector == button[class='btn'][onclick='myFunction()']<span style="color: #000000;">|</span>Click Me!</p>
+		<p>
+			&bull;&nbsp;&nbsp;General format：CssSelector | Display text|Index<br /> 
+			&bull;&nbsp;&nbsp;If there are multiple items on the screen, they can be specified by Index</p>
+		<p>&nbsp; &nbsp; Example :</p>
+		<p>&nbsp; &nbsp; ButtonCssSelector_0 == button[class='btn'][onclick='myFunction()']|Click Me!|<span style="color: #ff0000;">0</span></br>
+			&nbsp; &nbsp; ButtonCssSelector_1 == button[class='btn'][onclick='myFunction()']|Click Me!|<span style="color: #ff0000;">1</span>
+		</p>
+		<p>
+			&bull;&nbsp;If there are multiple layers on the screen, you can specify with parent &gt; children</p>
+		<p>&nbsp; &nbsp; ButtonCssSelector == div[class='container'] <span style="color: #ff0000;">&gt;</span>button[class='btn'][onclick='myFunction()']|Click Me!
+		</p>
+		<h2>3. If canvas, use coordinates (It will be affected by screen resolution)</h2>
+		<p>
+			&bull;&nbsp;Right click on the page &rarr; Inspect
+			&bull;&nbsp;You can get (x, y) coordinates by debugging from JavaScript code</p>
+		<img src="img/canvas1.png" alt="css">
+
+	</div>
+	<div id="Commands" class="tabcontent" style="text-align: left">
+		<h2>1. Description rules</h2>
+		<table
+			style="width: 456.65pt; border-collapse: collapse; border: none;"
+			width="609">
+			<tbody style="text-align: center">
+				<tr style="height: 12.0pt;">
+					<td
+						style="width: 72.55pt; border: solid windowtext 1.0pt; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="97">
+						<p
+							style="margin-bottom: .0001pt; text-align: center; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">1</span>
+						</p>
+					</td>
+					<td
+						style="width: 91.75pt; border: solid windowtext 1.0pt; border-left: none; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="122">
+						<p
+							style="margin-bottom: .0001pt; text-align: center; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">2</span>
+						</p>
+					</td>
+					<td
+						style="width: 82.15pt; border: solid windowtext 1.0pt; border-left: none; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="110">
+						<p
+							style="margin-bottom: .0001pt; text-align: center; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">3</span>
+						</p>
+					</td>
+					<td
+						style="width: 94.95pt; border: solid windowtext 1.0pt; border-left: none; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="127">
+						<p
+							style="margin-bottom: .0001pt; text-align: center; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">4</span>
+						</p>
+					</td>
+					<td
+						style="width: 115.25pt; border: solid windowtext 1.0pt; border-left: none; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="154">
+						<p
+							style="margin-bottom: .0001pt; text-align: center; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">5</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height: 12.0pt;">
+					<td
+						style="width: 72.55pt; border: solid windowtext 1.0pt; border-top: none; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="97">
+						<p style="margin-bottom: .0001pt; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Arial', sans-serif;">FRAME</span>
+						</p>
+					</td>
+					<td
+						style="width: 91.75pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="122">
+						<p style="margin-bottom: .0001pt; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Malgun Gothic', sans-serif;">HTML Item</span>
+						</p>
+					</td>
+					<td
+						style="width: 82.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="110">
+						<p style="margin-bottom: .0001pt; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Malgun Gothic', sans-serif;">Setting value</span>
+						</p>
+					</td>
+					<td
+						style="width: 94.95pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="127">
+						<p style="margin-bottom: .0001pt; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Malgun Gothic', sans-serif;">Expected value</span>
+						</p>
+					</td>
+					<td
+						style="width: 115.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: .75pt .75pt .75pt .75pt; height: 12.0pt;"
+						width="100">
+						<p style="margin-bottom: .0001pt; line-height: normal;">
+							<span
+								style="font-size: 12.0pt; font-family: 'Malgun Gothic', sans-serif;">Actions</span>
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>
+			&bull;&nbsp;It separates with the pieces by comma. if the parameters contains comma, please put double quotation marks on that parameters.<br />
+			&bull;&nbsp;(null) is empty. If there is nothing, it will be one empty string. Uppercase and lowercase letters do not matter.<br />
+			&bull;&nbsp;In the case of default action (click).If setting or assert value , "5. Action" can be omitted.<br /><br />
+			Example :<br />
+			<span class="comment">//Click a HTML item</span><br />frame,ElementXPath, null, null, CLICK <br />
+			<span class="comment">//If the action is click it can be omitted by default.</span><br />
+			frame, ElementXPath, null, null
+		</p>
+		<h2>2. Command definitions</h2>
+		<p>
+		[LOCATORS] <br /> ElementXPath == //*[@id="item004"] <br />
+		ElementCssSelector == div[id$='_free_tableopen'][class='tableOpen']| <br />
+		ImportData == cmd.exe /c cls &amp; start cmd.exe /c " mysql -u
+		username -p password database_name &lt; sql/import_data.sql " <br />
+		HomePage== http://localhost:8080/index.html
+		</p>
+		<p>
+			<span class="comment">// Selenium action definitions</span><br />CLICK,
+			MOVE_TO_ELEMENT, DOUBLE_CLICK, CONTEXT_CLICK, MOVE_BY_OFFSET,
+			CLICK_AND_HOLD, RELEASE
+		</p>
+		<p>
+			<span class="comment">// MOUSE action definitions</span><br />MOUSE
+			(MOUSE_MOVE, MOUSE_CLICK, MOUSE_RIGHT_CLICK, MOUSE_DOUBLE_CLICK)
+		</p>
+		<p>
+			<span class="comment">// KEY value definitions</span><br />KEY
+			(VirtualKeyCode)
+		</p>
+		<p>
+			example : RETURN, CONTROL, TAB, VK_A, VK_B,&hellip;<br /> <br /> 
+			Key code is defined here<br/>
+ 			<span style="color: #0000ff;">https://docs.microsoft.com/en-us/windows/desktop/inputdev/virtual-key-codes</span>
+		</p>
+		<p>
+			<span class="comment">// Check the item exists / does not exist</span><br />ASSERT_NOT_NULL<br />ASSERT_NULL
+		</p>
+		<p>
+			<span class="comment">// Check the item is displayed / not displayed</span><br />ELEMENT_NOT_VISIBLE<br />ELEMENT_VISIBLE
+		</p>
+		<h2>3. Common commands</h2>
+		<p>
+			<span class="comment">// Click HTML item (Top page or no frame page)</span> <br />
+ 			&bull;&nbsp;null, ElementXPath, null, null <br />
+ 			<span class="comment">// Move the mouse to item</span> <br />
+ 			&bull;&nbsp;null, ElementCssSelector, null, null, MOVE_TO_ELEMENT <br />
+ 			<span class="comment">// Click an item in the frame</span> <br />
+ 			&bull;&nbsp;frame, ElementXPath, null, null <br /> 
+ 			<span class="comment">// Double-click an item in a frame</span> <br />
+ 			&bull;&nbsp;frame, ElementCssSelector, null, null, DOUBLE_CLICK <br /> 
+ 			<span class="comment">// Click the item coordinates (30, 40) in the frame</span> <br />
+  			&bull;&nbsp;frame, ElementXPath, 30, 40, CLICK <br />
+  			<span class="comment">// Capture screen</span> <br />
+  			&bull;&nbsp;frame, ElementCssSelector, OK, OK <br />
+			<span class="comment">// confirmation message</span> <br />
+			&bull;&nbsp;frame,ElementCssSelector, OK, OK, message <br /> 
+			<span class="comment">// Select relation item in sales data</span> <br />
+			&bull;&nbsp;frame, Select sales data relation, null <br />
+			<span class="comment">// CSS Setting sttribute</span> <br />
+			&bull;&nbsp;null, Slide,"'style','left: 0%'", null, SET_ATTRIBUTE<br /> 
+			<span class="comment">// The item selected by the relation is assert to sales, capture screen</span> <br />
+			&bull;&nbsp;frame, ElementXPath, null, sales <br /> 
+			<span class="comment">// Check item exists</span> <br />
+			&bull;&nbsp;frame, ElementXPath, null, null, ASSERT_NOT_NULL <br /> 
+			<span class="comment">// Check item does not exist</span> <br />
+			&bull;&nbsp;frame, ElementXPath, null, null, ASSERT_NULL<br /> 
+			<span class="comment">// Check item displays</span> <br />
+			&bull;&nbsp;frame, ElementXPath, null, null, ELEMENT_NOT_VISIBLE <br /> 
+			<span class="comment">// Check item is not displayed</span> <br />
+			&bull;&nbsp;frame, ElementXPath, null, null, ELEMENT_VISIBLE <br />
+			<h2>3. ALERT</h2>
+			 <span class="comment">// Dismiss alert</span> <br />
+			 &bull;&nbsp;alert, dismiss, null, null <br /> 
+			 <span class="comment">// Accept alert</span> <br />
+			 &bull;&nbsp;alert, accept, null, null <br /> 
+			 <span class="comment">// Assert alert text to(xyz)</span> <br />
+			 &bull;&nbsp;alert, assert, null, xyz <br /> 
+			 <span class="comment">// Multiple alert processing</span> <br />
+			 &bull;&nbsp;alert, accept|dismiss, null , null &nbsp; &nbsp;or &nbsp; &nbsp; alert, accept|dismiss, null|null , null <br />
+			 &bull;&nbsp;alert, accept|assert, null , null | ABC <br />
+			 &bull;&nbsp;alert, accept|KEY, null|ALT; VK_S-&gt; ALT; VK_N , null
+		</p>
+		<p>
+		<h2>4. MOUSE</h2>
+		<span class="comment">// Move to screen coordinates (x, y)</span> <br />
+		 &bull;&nbsp;MOUSE, null, x, y, MOUSE_MOVE <br /> 
+		<span class="comment">// Click mouse on current position</span> <br /> 
+		 &bull;&nbsp;MOUSE, null, null, null, CLICK <br />
+		 &bull;&nbsp;MOUSE, null, null, null, DOUBLE_CLICK <br />
+		 &bull;&nbsp;MOUSE, null, null, null, RIGHT_CLICK
+		</p>
+		<h2>5. KEY</h2>
+		<p>
+			<span class="comment">// Press one key</span> <br />
+			&bull;&nbsp;KEY, null, RETURN, null <br /> 
+			<span class="comment">// Press multiple keys (ALT + S)
+			</span> <br />&bull;&nbsp;KEY, null, ALT; VK_S, null <br /> 
+			<span class="comment">// Press multiple keys and many step (ALT + S) next to (ALT + N)</span> <br />
+			&bull;&nbsp;KEY, null, ALT; VK_S-&gt; ALT; VK_N, null&gt;
+		</p>
+		<h2>6.RUMTIME</h2>
+		<p>
+			<span class="comment">// Execute SQL</span> <br /> 
+			&bull;&nbsp;RUNTIME, ImportData, null, null
+		</p>
+		<h2>7. LOAD &amp; RELOAD </h2> 
+		<p>
+			<span class="comment">// Move to the portal site</span> <br />
+			&bull;&nbsp;LOAD, HomePage, null, null <br /> 
+			<span class="comment">// Add a new tab (tab 1)</span> <br />
+			&bull;&nbsp;KEY, null, CONTROL;VK_T, null <br />
+			&bull;&nbsp;RELOAD, HomePage, 1, null <br /> 
+			<span class="comment">// Return to tab 0 and do not update the screen</span> <br />
+			&bull;&nbsp;RELOAD, null, 0, null <br /> 
+			<span class="comment">// or </span> <br /> 
+			&bull;&nbsp;RELOAD, , 0, null <br /> 
+			<span class="comment">// Return to tab 0 and refresh the screen</span> <br />
+			&bull;&nbsp;RELOAD, BaseUrl, 0, null
+		</p>
+		<h2>8. WAIT</h2>
+		<p>
+		<span class="comment">// Processing waits for one second</span> <br /> 
+		&bull;&nbsp;wait, null, 1000, null
+		</p>
+		<p>
+		<h2>9. NONE</h2>
+		<p>
+			<span class="comment">// This command is executed at the end of the previous command. When you want to run 2 command at the same time</span><br />
+			<span class="comment">// Clicking on that popup (next command) starts from NONE (the frame is the same, so it is not necessary to put it in NONE)</span><br />
+			&bull;&nbsp;NONE, ElementXPath, null, null
+		</p>
+	</div>
+	<div id="Blocks" class="tabcontent" style="text-align: left">
+		<p>
+		<h2>Looking at the following sample.</h2>
+		&bull;&nbsp;testdata/common/Setup.txt <br /> 
+		&bull;&nbsp;testdata/sql/import_data.sql <br />
+		&bull;&nbsp;testdata/sql/restore_data.sql <br /> 
+		&bull;&nbsp;testdata/all/programing.txt
+		</p>
+		<p>
+			---------------------------------Setup.txt-----------------------------------<br />
+			<span class="comment">// 1. FRAME, 2. HTML item, 3. value, 4.
+				expected value, 5. action</span><br /> <span class="comment">//
+				Setting Value (Value != null, Expected value = null)</span><br /> <span
+				class="comment">// Assert Value (Value = null, Expected value
+				!= nulls)</span><br /> <span class="comment">// Select Item
+				(default is click) (Value = null, Expected value = null)</span><br /> <span
+				class="comment">// Coordinate (x, y) (Value != null, Expected
+				value != null)</span>
+		</p>
+		<p>
+			<span class="keyword">[LOCATORS]</span><br />HomePge ==
+			localhost:8080/Index.html<br />LoginID == //*[@id="email"]<br />LoginPass
+			== //*[@id="pass"]<br />ImportData == mysql -u username -p password
+			database_name &lt; sql/import_data.sql
+		</p>
+		<p>
+			<span class="keyword">[login_block]</span><br />LOAD, HomePge, null,
+			null<br />null, LoginID, username, null<br />null, LoginPass, abc,
+			null
+		</p>
+		<p>
+			<span class="keyword">[ImportTestData_block]</span><br />RUNTIME,
+			ImportData, null, null<br />wait, null, 30000, null
+		</p>
+		<p>
+			<span class="keyword">[RestoreData_block]</span><br />RUNTIME,
+			ImportData, null, null<br />wait, null, 30000, null
+		</p>
+		<p>
+			<span class="keyword">[displayConsole（IE)]</span><br />wait, null,
+			1000, null<br />KEY, nnull, VK_F12-&gt;CONTROL;VK_2, null<br />wait,
+			null, 1000, null
+		</p>
+		<p>
+			<span class="keyword">[displayConsole(CHROME)]</span><br />wait,
+			null, 1000, null<br />KEY, null, VK_CONTROL;VK_SHIFT;VK_J, null<br />wait,
+			null, 1000, null
+		</p>
+		<p>
+			<span class="keyword">[displayConsole]</span><br />wait, null, 1000,
+			null<br />KEY, nnull, VK_F12, null<br />wait, null, 1000, null
+		</p>
+		<p>
+			<span class="keyword">[END]</span>
+		</p>
+		<p>---------------------------------import_data.sql-----------------------------------</p>
+		<p>
+			CREATE TABLE students IF NOT EXSITS (<br />student_id INT NOT NULL,<br />student_name
+			VARCHAR(30) NOT NULL,<br />PRIMARY KEY (student_id),<br />UNIQUE
+			(student_name)<br />);
+		</p>
+		<p>
+			INSERT INTO students <br />(student_id, student_name) <br />VALUES
+			<br />(1,"Tacos"),<br />(2,"Tomato Soup"),<br />(3,"Grilled
+			Cheese");
+		</p>
+		<p>---------------------------------restore_data.sql-----------------------------------</p>
+		<p>DELETE ALL FROM students;</p>
+		<p>---------------------------------programing.txt-----------------------------------</p>
+		<p>
+			<span class="comment">// 1. FRAME, 2. HTML item, 3. value, 4.
+				expected value, 5. action</span><br /> <span class="comment">//
+				Setting Value (Value != null, Expected value = null)</span><br /> <span
+				class="comment">// Assert Value (Value = null, Expected value
+				!= nulls)</span><br /> <span class="comment">// Select Item
+				(default is click) (Value = null, Expected value = null)</span><br /> <span
+				class="comment">// Coordinate (x, y) (Value != null, Expected
+				value != null)</span>
+		</p>
+		<p>
+			<span class="keyword">[IMPORT]</span><br /> <span class="comment">//
+				import header file</span><br />testdata/common/Setup.txt
+		</p>
+		<p>
+			<span class="keyword">[LOCATORS]</span><br /> <span class="comment">//
+				local variables</span><br />GetDataButton == //*[@id="get_data"]<br />StudentListBox
+			== //*[@id="user_list"]
+		</p>
+		<p>
+			<span class="keyword">[testcase1]</span><br /> <span class="comment">//
+				import test data</span><br />ImportTestData_block
+		</p>
+		<p>
+			<span class="comment">// login</span><br />login_block
+		</p>
+		<p>
+			<span class="comment">// click to button</span><br />null,
+			GetDataButton, null, null<br /> <span class="comment">//
+				assert result</span><br />null, StudentListBox, null, Tacos | Tomato Soup
+			| Grilled Cheese, check 3 students
+		</p>
+		<p>
+			<span class="comment">// restore data</span><br />RestoreData_block
+		</p>
+		<p>
+			<span class="comment">// the same main method in C or Java</span><br />
+			<span class="keyword">[COMMANDS]</span><br />testcase1
+		</p>
+		<p>
+			<span class="keyword">[END]</span>
+		</p>
+		<p>---------------------------------programing.txt-----------------------------------</p>
+		<p>
+		<h2>1. Variables</h2>
+		&bull;&nbsp;Locators(Xpath or CssSelector) the sample roles of variables. <br />
+		&bull;&nbsp;Locators（HomePge、LoginId,..）in file Setup.txt are similar to global variables.<br />
+		&bull;&nbsp;(GetDataButton StudentListBox) in file programing.txt are similar to the locale variables. Of course, if the names overlap, the locale variable takes precedence.
+		</p>
+		<h2>2. Methods</h2>
+		<p>
+		&bull;&nbsp;An operation block that defines an operation set to be repeated each time within [] block is a method image. It can be defined in one place and called in many places. This is very useful and the tester saves time.<br /> 
+			&nbsp; &nbsp; Example: [login_block] and [ImportTestData_block] in file Setup.txt is calling by command：login_block <br />
+		&bull;&nbsp;Method Extension: The behavior of each browser may differ. Example when displaying console log above. <br />
+		 &nbsp; &nbsp;in IE use F12 &rarr; SHIFT + 2 the command is : displayConsole（IE), in Chrome use CONTROL + SHIFT + J the command is :  displayConsole(CHROME) <br />
+		 &nbsp; &nbsp;So we define individual processing blocks. Or other than IE and Chrome, define default displayConsole <br />
+		 &nbsp; &nbsp;In calling side only use the same command : displayConsole<br />
+		&bull;&nbsp; For individual method, please put the browser name defined in the setting file in parentheses.
+		</p>
+		<p>
+		<h2>3. Import File</h2>
+		&bull;&nbsp;Above, the programming.txt file calls the Setup.txt file, and all variables and methods can be used. Similar to class inheritance.
+		<br />&bull;&nbsp; If block names overlap, the local block takes precedence (overide).
+		</p>
+	</div>
+
+	<div id="Samples" class="tabcontent" style="text-align: left">
+
+		<h2> Sample test case files under the testdata folder</h2>
+		<h2>1.Test project</h2>
+		<p>
+		This sample is a set of test data and test cases. Similar to C and Java projects. The purpose may be divided by each screen and function. <br /> This sample is for reference. As you ask database and screen, please execute according to the actual environment.<br /><br />
+		<span class="comment">// &nbsp;Header file</span><br />
+		&bull;&nbsp;testdata/common/Setup.txt
+		<br /> <span class="comment">// &nbsp;Database data file</span><br />
+		&bull;&nbsp;testdata/sql/import_data.sql <br />
+		&bull;&nbsp;testdata/sql/restore_data.sql <br /> 
+		<span class="comment">// &nbsp;Test case file</span><br />
+		&bull;&nbsp;testdata/all/programing.txt
+		</p>
+
+		<p>
+		<h2>2. The following locale samples can be run:</h2>
+		&bull;&nbsp;Guide.txt<br />
+		&bull;&nbsp;Button.txt<br />
+		&bull;&nbsp;Canvas.txt<br />
+		&bull;&nbsp;Frame.txt
+		</p>
+		<p>
+		<h2>3. This is a login sample to the facebook site.</h2>
+		&bull;&nbsp;LoginFacebook.txt
+		</p>
+	</div>
+
+	<script>
+		function openTab(tabName) {
+			if (tabName == "Introduction") {
+				document.getElementById("Introduction").style.display = "block";
+				document.getElementById("BtIntroduction").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Introduction").style.display = "none";
+				document.getElementById("BtIntroduction").style.backgroundColor = "#f1f1f1";
+			}
+
+			if (tabName == "Guide") {
+				document.getElementById("Guide").style.display = "block";
+				document.getElementById("BtGuide").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Guide").style.display = "none";
+				document.getElementById("BtGuide").style.backgroundColor = "#f1f1f1";
+			}
+			
+			if (tabName == "Setting") {
+				document.getElementById("Setting").style.display = "block";
+				document.getElementById("BtSetting").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Setting").style.display = "none";
+				document.getElementById("BtSetting").style.backgroundColor = "#f1f1f1";
+			}
+
+			if (tabName == "FileFormat") {
+				document.getElementById("FileFormat").style.display = "block";
+				document.getElementById("BtFileFormat").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("FileFormat").style.display = "none";
+				document.getElementById("BtFileFormat").style.backgroundColor = "#f1f1f1";
+			}
+
+			if (tabName == "Locators") {
+				document.getElementById("Locators").style.display = "block";
+				document.getElementById("BtLocators").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Locators").style.display = "none";
+				document.getElementById("BtLocators").style.backgroundColor = "#f1f1f1";
+			}
+
+			if (tabName == "Commands") {
+				document.getElementById("Commands").style.display = "block";
+				document.getElementById("BtCommands").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Commands").style.display = "none";
+				document.getElementById("BtCommands").style.backgroundColor = "#f1f1f1";
+			}
+
+			if (tabName == "Blocks") {
+				document.getElementById("Blocks").style.display = "block";
+				document.getElementById("BtBlocks").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Blocks").style.display = "none";
+				document.getElementById("BtBlocks").style.backgroundColor = "#f1f1f1";
+			}
+
+			if (tabName == "Samples") {
+				document.getElementById("Samples").style.display = "block";
+				document.getElementById("BtSamples").style.backgroundColor = "#4CAF50";
+			} else {
+				document.getElementById("Samples").style.display = "none";
+				document.getElementById("BtSamples").style.backgroundColor = "#f1f1f1";
+			}
+
+		}
+
+		// Get the default tab
+		document.getElementById("BtIntroduction").click();
+	</script>
+
+</body>
+</html>

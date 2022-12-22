@@ -1,0 +1,94 @@
+// 1. FRAME, 2. HTML item, 3. value, 4. expected value, 5. action
+// Setting Value (Value != null, Expected value = null)
+// Assert Value (Value = null, Expected value != nulls)
+// Select Item (default is click) (Value = null, Expected value = null)
+// Coordinate (x, y) (Value != null, Expected value != null) 
+
+[LOCATORS]
+//PostManURL == https://www.postman.com/planetary-meteor-85425/workspace/new-team-workspace/request/18249768-d7b23318-db87-4a2d-b85e-cb9dd101b341
+PostManURL == https://www.postman.com/planetary-meteor-85425/workspace/new-team-workspace/request/create?requestId=6ecf7b42-6ba9-43cd-ace1-3f01a84fc569
+
+SignInButton == //*[@id="app-root"]/div/div/div[5]/div[3]/div[1]/button[1]
+LoginId == //*[@id="username"]
+LoginPass == //*[@id="password"]
+LoginButton == //*[@id="sign-in-btn"]
+RequestMethod == input[placeholder="METHOD"][class="input input-search"]|
+URL == br[data-text="true"]|
+SendButton == span|Send
+ResponeResult == div[class="context-view"][aria-hidden="true"]|
+
+// define block/function login
+[login_block]
+// open post man url
+RELOAD, PostManURL, null, null
+
+// click to "sign in" button
+null, SignInButton, null, null
+
+// input login id
+null, LoginId, manhjs, null
+
+// input password
+null, LoginPass, jinso193, null
+
+// click login
+null, LoginButton, null, null
+
+// wait 10 second
+wait, null, 10000 , null
+
+
+[testcase1]
+// call block/function login
+login_block
+
+// set request method
+//null, RequestMethod, GET, null
+
+// set url
+wait, null, 5000 , null
+null, URL, null, null
+null, URL, "", null
+null, URL, https://google.com, null
+
+// click send button 
+null, SendButton, null, null
+
+// assert respone
+//null, ResponeResult, null, abc
+
+// wait 10 second
+wait, null, 10000 , null
+
+[testcase2]
+
+// wait 10 second
+KEY, null, F12, null
+wait, null, 1000 , null
+KEY, null, CONTROL;SHIFT;VK_M, null
+
+wait, null, 1000 , null
+KEY, null, SHIFT;VK_M, null
+
+wait, null, 1000 , null
+KEY, null, CONTROL;VK_M, null
+
+// wait 10 second
+wait, null, 10000 , null
+
+[testcase3]
+
+// wait 10 second
+KEY, null, F12, null
+wait, null, 1000 , null
+KEY, null, CONTROL;SHIFT;VK_M, null
+
+
+// wait 10 second
+wait, null, 10000 , null
+
+
+[COMMANDS]
+testcase1
+
+[END]
